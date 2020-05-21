@@ -76,8 +76,7 @@ public class TopicService {
         return posts;
     }
 
-    public boolean addNewPostToTopic(
-                                     String content,
+    public boolean addNewPostToTopic(String content,
                                      Integer userId,
                                      Integer topicId) {
         Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
@@ -88,7 +87,41 @@ public class TopicService {
             throwables.printStackTrace();
             return false;
         }
-
     }
+
+    public Topic addNewTopic(String title,
+                             String content,
+                             Integer userId) {
+        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+        ResultSet rs = topicRepository.insertTopic(title, content, timestamp, userId);
+        Topic topic = null;
+        try {
+            if (rs.next()) {
+                topic = new Topic(rs.getInt("id"), rs.getString("title"), rs.getString(
+                        "content"), rs.getTimestamp("timestamp"), rs.getInt("user_id"));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return topic;
+    }
+
+    public Post deletePostById(Integer id){
+
+        ResultSet rs = postRepository.deletePostById(id);
+        Post post = null;
+        try{
+            if(rs.next()){
+                post = new Post(rs.getInt("id"), rs.getString("content"),
+                                         rs.getTimestamp("timestamp"), rs.getInt("user_id"),
+                                         rs.getInt("topic_id"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return post;
+    }
+
 
 }

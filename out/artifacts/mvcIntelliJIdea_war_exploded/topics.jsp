@@ -12,15 +12,25 @@
 <html>
 <head>
     <title>Topics</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 </head>
 <body>
-
+    <header>
+        <form action="/newTopic.html">
+            <input type="submit" value="new" />
+        </form>
+    </header>
+    <div class="list-group">
     <%
         List<Topic> topics = (ArrayList<Topic>) request.getAttribute("topics");
         for (Topic t : topics) {
     %>
-    <a href="/TopicController?topicid=<%= t.getId() %>"><%= t.getTitle() %></a>
+    <a href="/TopicController?topicid=<%= t.getId() %>" class="list-group-item list-group-item-action active"><%= t.getTitle() %></a>
     <% } %>
+    </div>
 <hr/>
 </body>
 </html>

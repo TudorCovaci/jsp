@@ -27,9 +27,29 @@ public class PostRepository implements Repository {
                                   Timestamp timestamp,
                                   Integer userId,
                                   Integer topicId) throws SQLException {
-        stmt.executeQuery(
+        stmt.execute(
                 "insert into posts(content, timestamp, user_id, topic_id) values('" + content +
                 "', '" + timestamp.toString() + "', " + userId + ", " + topicId + ");");
+    }
+
+    public ResultSet getPostById(Integer id){
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery("select * from posts where post_id=" + id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return rs;
+    }
+
+    public ResultSet deletePostById(Integer id){
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery("delete from posts where post_id=" + id + "returning *");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return rs;
     }
 
 }

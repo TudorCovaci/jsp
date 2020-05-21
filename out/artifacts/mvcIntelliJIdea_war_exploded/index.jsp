@@ -9,8 +9,14 @@
 <html>
   <head>
     <title></title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
   </head>
   <body>
-  <a href="topics.jsp">Topics</a>
+  <div class="list-group">
+      <a href="topics.jsp" class="list-group-item list-group-item-action active">Topics</a>
+  </div>
   </body>
 </html>

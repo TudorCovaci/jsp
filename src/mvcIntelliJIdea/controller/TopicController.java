@@ -3,6 +3,7 @@ package mvcIntelliJIdea.controller;
 import static mvcIntelliJIdea.controller.LoginController.validateSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,6 +36,9 @@ public class TopicController extends HttpServlet {
         Integer id = Integer.parseInt(param);
         Topic topic = topicService.findTopicById(id);
         List<Post> posts = topicService.getAllPostsForTopicId(id);
+        if(posts == null){
+            posts = new ArrayList<>();
+        }
         if (topic != null) {
             req.setAttribute("topic", topic);
             req.setAttribute("posts", posts);
@@ -57,6 +61,10 @@ public class TopicController extends HttpServlet {
         String content = req.getParameter("content");
         Integer topicId = Integer.parseInt(req.getParameter("topicid"));
         topicService.addNewPostToTopic(content,userId,topicId);
+        Topic topic = topicService.findTopicById(topicId);
+        List<Post> posts = topicService.getAllPostsForTopicId(topicId);
+        req.setAttribute("topic", topic);
+        req.setAttribute("posts", posts);
         rd.forward(req, resp);
 
     }

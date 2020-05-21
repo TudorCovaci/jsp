@@ -2,13 +2,25 @@
 
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 </head>
 <body>
 <form action="LoginController" method="post">
-    Enter username : <input type="text" name="username"> <BR>
-    Enter password : <input type="password" name="password"> <BR>
-    <input type="submit" value="Login"/>
+  <div class="form-group">
+    <label for="usernameId">Username</label>
+    <input type="text" name="username" id="usernameId">
+  </div>
+  <div class="form-group">
+    <label for="passwordId">Password</label>
+    <input type="password" name="password" id="passwordId">
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="Login"/>
 </form>
-</body></html>
+</body>
+</html>
