@@ -28,10 +28,10 @@
 <p><%= topic.getContent() %>
 </p>
 
-<%--<form action="/TopicController?topicid=<%=topic.getId()%>" method="post">--%>
-<%--    Content : <input type="text" name="content"> <BR>--%>
-<%--    <input type="submit" value="Post"/>--%>
-<%--</form>--%>
+<form action="/TopicController?topicid=<%=topic.getId()%>" method="post">
+    Content : <input type="text" name="content"> <BR>
+    <input type="submit" value="Post"/>
+</form>
 
 <h3>Posts</h3>
 <ul>
