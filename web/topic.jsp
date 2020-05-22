@@ -42,7 +42,8 @@
     <%--    Content : <input type="text" name="content"> <BR>--%>
     <div class="form-group">
         <label for="contentTextArea">Content</label>
-        <textarea name="content" class="form-control" rows="3" cols="5" id="contentTextArea"></textarea> <br>
+        <textarea name="content" class="form-control" rows="3" cols="5"
+                  id="contentTextArea"></textarea> <br>
     </div>
     <input type="submit" class="btn btn-primary" value="Post"/>
 </form>
@@ -54,10 +55,9 @@
     <li>
         <div>Post <%= posts.indexOf(p) + 1 %><br/>
             <label for="content">Content</label>
-            <textarea rows="5" readonly id="content"><%=p
-                .getContent()%></textarea>
+            <textarea rows="5" readonly id="content"><%=p.getContent()%></textarea>
             <% if (p.getUser_id().equals(userId)) {%>
-            <button onclick="document.getElementById('id01').style.display='block'; var id =<%=p.getId()%>">
+            <button onclick="document.getElementById('id01').style.display='block'; let id =<%=p.getId()%>">
                 Delete
             </button>
             <% } %>

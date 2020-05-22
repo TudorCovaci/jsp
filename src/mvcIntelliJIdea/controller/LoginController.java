@@ -6,17 +6,16 @@ package mvcIntelliJIdea.controller;
 
 
 import java.io.IOException;
-
+import java.security.InvalidParameterException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
 import mvcIntelliJIdea.model.Authenticator;
 import mvcIntelliJIdea.model.User;
-
+import mvcIntelliJIdea.validator.TypeValidator;
 
 
 public class LoginController extends HttpServlet {
@@ -31,6 +30,15 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         RequestDispatcher rd = null;
+
+        try {
+            TypeValidator.validateString(username);
+            TypeValidator.validateString(password);
+        } catch (InvalidParameterException ex) {
+            rd = request.getRequestDispatcher("/error.jsp");
+            rd.forward(request, response);
+            return;
+        }
 
         Authenticator authenticator = new Authenticator();
         User result = authenticator.authenticate(username, password);
